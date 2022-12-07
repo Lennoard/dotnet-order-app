@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using dotnet_order_app.Models;
+using dotnet_order_app.Models.Login;
 
 namespace dotnet_order_app.Controllers;
 
@@ -27,5 +28,12 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Login(Usuario Usuario)
+    {
+        return View(Usuario);
     }
 }
